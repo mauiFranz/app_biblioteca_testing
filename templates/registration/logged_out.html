@@ -1,0 +1,20 @@
+{% extends "core/sitio_pruebas/base.html" %}
+{% load static %}
+{% block logout %}
+<div class="container text-center">
+  <br>
+  <div class="">
+    <img class="img img-fluid rounded mx-auto d-block logo-abodefen" src="{% static 'img/logo3.webp' %}" alt="" />
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="d-grid gap-2 col-2 mx-auto">
+    <h3 class="text-center">Desconectado!!</h3>
+    <br>
+    <button class="btn-success"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Volver a Ingresar</a></button>
+  </div>
+</div>
+
+{% endblock logout %}

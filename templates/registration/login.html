@@ -1,0 +1,65 @@
+{% extends "core/sitio_pruebas/base.html" %}
+{% load static %}
+{% block login %}
+<br>
+<br>
+<div class="container">
+  <div class="text-center">
+    <img class="img" src="{% static 'img/logo3.webp' %}" alt="" />
+  </div>
+  <br>
+  <br>
+  {% if next %}
+  {% if user.is_authenticated %}
+  <div class="text-center">
+    <p class="text-warning">Para acceder al contenido debe ingresar sus credenciales</p>
+  </div>
+  {% else %}
+  <div class="text-center">
+    <p class="text-danger">Por favor, acceda en esta página</p>
+  </div>
+  {% endif %}
+  {% endif %}
+  <br />
+  <div class="mx-auto login-width">
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
+      <table class="">
+        <tr>
+          <td>{{ form.username.label_tag }}</td>
+          <td>{{ form.username }}</td>
+        </tr>
+        <tr></tr>
+        <tr>
+          <td>{{ form.password.label_tag }}</td>
+          <td>{{ form.password }}</td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <div class="mx-auto">
+        <input type="submit" class="btn btn-primary" value="Ingresar al Sistema" />
+        <input type="hidden" name="next" value="{{ next }}">
+        <br>
+      </div>
+    </form>
+  </div>
+  <br />
+  {% if form.errors %}
+  {% for field in form %}
+  {% for error in field.errors %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{error|escape }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% endfor %}
+  {% for error in form.non_field_errors %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{error|escape }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>
+{% endblock login %}

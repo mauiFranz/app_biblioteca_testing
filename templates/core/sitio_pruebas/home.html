@@ -1,0 +1,50 @@
+{% extends "core/sitio_pruebas/base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<section class="container">
+    <div class="text-end align-top">
+        <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
+    </div>
+    <div class="row">
+        <h2 class="text-center display-2">{{ titulo }}</h2>
+    </div>
+    <br>
+    <div class="">
+        <h3 class="text-center display-4">{{ subtitulo }}</h3>
+        <br>
+        <table class="table table-dark table-hover table-striped">
+            <thead>
+                <tr class="">
+                    <th>N°</th>
+                    <th>ISBN</th>
+                    <th>Nombre</th>
+                    <th>Materia</th>
+                </tr>
+            </thead>
+            {% if libros %}
+            <tbody>
+                {% for libro in libros %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ libro.isbn }}</td>
+                    <td>{{ libro.nombre_libro }}</td>
+                    <td>{{ libro.materia_libro }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            {% else %}
+            <tr>
+                <td colspan="4">No se encontraron Registros</td>
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+    <br>
+    <br>
+    <div class="d-grid">
+        <a class="btn btn-primary" href="{% url 'sitio_pruebas:libro_add' %}">Agregar Libro</a>
+    </div>
+</section>
+
+{% endblock content %}

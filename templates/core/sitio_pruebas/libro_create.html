@@ -1,0 +1,60 @@
+{% extends 'core/sitio_pruebas/base.html' %}
+{% load static %}
+
+{% block libro_add %}
+<div class="container">
+    <br>
+    <h2 class="text-center display-2">{{ titulo }}</h2>
+    <br>
+    <h4 class="text-center display-4">{{ subtitulo }}</h4>
+    <br>
+    <form action="" method="post" enctype="multipart/form-data" class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text">{{ form.isbn.label }}</span>
+                {{ form.isbn }}
+            </div>
+            <br>
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text">{{ form.materia_libro.label }}</span>
+                {{ form.materia_libro }}
+            </div>
+            <br>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text">{{ form.nombre_libro.label }}</span>
+                {{ form.nombre_libro }}
+            </div>
+            <br>
+        </div>
+        {% csrf_token %}
+        <div class="d-grid">
+            <button class="btn btn-success" type="submit">Guardar</button>
+            <br>
+            <a href="{% url 'sitio_pruebas:home' %}" class="btn btn-danger" type="submit">Cancelar</a>
+        </div>
+    </form>
+    <br>
+    <div class="container">
+        <div class="col-6 mx-auto">
+            {% if form.errors %}
+            {% for field in form %}
+            {% for error in field.errors %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{error|escape }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{error|escape }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock libro_add %}
