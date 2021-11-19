@@ -1,4 +1,4 @@
-# app_biblioteca_testing
+# App Biblioteca para Testing
 Aplicación escrita en python y django, para la ejecución de pruebas
 
 ## Objectives
@@ -16,6 +16,7 @@ Para instalar se requiere:
 * Ejecuta el servidor de desarrollo de django
 * Abre tu navegador y testea la aplicación 
 
+Para el testeo usar el username: **user_test**, con el pass: **user_pass**
 
 
 ## Autor
